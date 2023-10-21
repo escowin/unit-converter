@@ -36,11 +36,7 @@ Run the following command to run the app:
 python app.py
 ```
 
-<!-- ![mobile](./assets/img/unit-converter-sm.jpg)
-
-![tablet](./assets/img/unit-converter-md.jpg)
-
-![desktop](./assets/img/unit-converter-lg.jpg) -->
+![terminal](./assets/img/unit-converter.jpg)
 
 ## Features
 - Choose from various physical measurements such as mass, length, and volume.
