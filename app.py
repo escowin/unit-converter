@@ -13,6 +13,10 @@
 import datetime
 
 app = "unit-converter"
+calculate = ("(l)ength", "(m)ass", "(v)olume")
+# to-do:
+# - Group similar options under 'calculate' variable (ie calculate.length, calculate.mass, etc.)
+# - Conditionally iterate & extract values from 'calculate' to perform dynamic functions
 
 
 def init():
@@ -25,44 +29,47 @@ def init():
 
 
 def select_measurement_type():
-    # Prompts user to select type of measurement
-    measurement_type = input("""
-    :: MEASUREMENT SELECTION ::
-    (l)ength (m)ass (v)olume 
-    enter: """)
+    # Dynamically generates prompt
+    prompt = ": : MEASUREMENT SELECTION : :\n\n"
+    for option in calculate:
+        prompt += f"{option}\n"
+    prompt += "\nenter: "
+
+    # Displays prompt in terminal
+    measurement_type = input(prompt)
     convert_unit(measurement_type.upper())
 
 
 def convert_unit(type):
     # Converts units based, grouped by type of measurement
 
-    print(f"""\n    :: {type} OPTIONS :: """)  # prints single char, but should print word
+    print(f"\n: : {type} OPTIONS : :\n")  # prints single char, but should print word
     # Variables defined by user input
     if type == "M":
-        unit = input("    (g) or (oz): ")
-        num = float(input("    amount: "))
+        unit = input("(g) or (oz): ")
+        num = float(input("amount: "))
 
         # Conditionally handles & displays data
         if unit.lower() == "g":
             converted = num / 28.35
-            print(f"\n    {num} {unit} = {converted} oz")
+            print(f"\n{num} {unit} = {converted} oz")
         else:
             converted = num * 28.35
-            print(f"\n    {num} {unit} = {converted} g")
+            print(f"\n{num} {unit} = {converted} g")
     else:
-        print(f"\n    invalid type: {type}")
+        print(f"\ninvalid type: {type}")
     prompt(type)
 
 
 def prompt(measurement_unit):
     # allows users to convert units again or exit the program
-    answer = input("\n    (c)onvert again, s(witch) units, or (e)xit? ")
+    answer = input("\n(c)onvert again, s(witch) units, or (e)xit? ")
     if answer.lower() == "c":
         convert_unit(measurement_unit)
     elif answer.lower() == "s":
         select_measurement_type()
     else:
-        print(f"\n    :: exiting {app} :: ")
+        print(f"\n: : exiting {app} : : ")
         return
 
 
