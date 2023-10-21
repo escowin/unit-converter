@@ -7,7 +7,7 @@ Python application designed for acquainting myself with the language's syntax & 
 
 ## Table of Contents
 - [Installation](#installation)
-- [Test](#test)
+<!-- - [Test](#test) -->
 - [Usage](#usage)
 - [Features](#features)
 - [Credits](#credits)
@@ -16,19 +16,19 @@ Python application designed for acquainting myself with the language's syntax & 
 ## Installation
 Run the following command to install necessary dependencies:
 ```
-$ npm i
+$ git clone git@github.com:escowin/unit-converter.git
 ```
 
-## Test
+<!-- ## Test
 Run the following command to run tests:
 ```
-$ 
-```
+$ python3 app.py
+``` -->
 
 ## Usage
 Run the following command to run app:
 ```
-$ 
+$ python3 app.py
 ```
 
 <!-- ![mobile](./assets/img/unit-converter-sm.jpg)
@@ -38,7 +38,8 @@ $
 ![desktop](./assets/img/unit-converter-lg.jpg) -->
 
 ## Features
-- Converts between ounces and grams
+- Choose from various physical measurements such as mass, length, and volume.
+- Converts between different units of measurements.
 
 ## Credits
 - Languages: Python
