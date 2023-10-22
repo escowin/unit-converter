@@ -13,11 +13,12 @@
 import datetime
 
 app = "unit-converter"
-calculate = ("(l)ength", "(m)ass", "(v)olume")
-# to-do:
-# - Group similar options under 'calculate' variable (ie calculate.length, calculate.mass, etc.)
-# - Conditionally iterate & extract values from 'calculate' to perform dynamic functions
-
+calculate = {
+    "measurement": ("(l)ength", "(m)ass", "(v)olume"),
+    "length": ("(cm)", "(in)"),
+    "mass": ("(g)", "(oz)"),
+    "volume": ("(l)itre", "(g)allon")
+}
 
 def init():
     date = datetime.date.today()
@@ -27,15 +28,16 @@ def init():
     http: //github.com/escowin/{app}\n""")
     select_measurement_type()
 
+def generate_prompt(option):
+    prompt = f": : {option.upper()} SELECTION : :\n\n"
+    print(calculate[option])
+    for choice in calculate[option]:
+        prompt += f"{choice}\n"
+    prompt += "\nenter: "
+    return prompt
 
 def select_measurement_type():
-    # Dynamically generates prompt
-    prompt = ": : MEASUREMENT SELECTION : :\n\n"
-    for option in calculate:
-        prompt += f"{option}\n"
-    prompt += "\nenter: "
-
-    # Displays prompt in terminal
+    prompt = generate_prompt("measurement")
     measurement_type = input(prompt)
     convert_unit(measurement_type.upper())
 
