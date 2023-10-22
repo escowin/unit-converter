@@ -1,18 +1,19 @@
 # SEQUENCE
 # 1. Import relevant libraries
-# 2. Greet user with init message
-# 3. Prompt user to enter weight & unit
-# 4. Convert 'weight' variable from string to float type to calculate number
-# 5. Display result in terminal
-# 6. Prompt user to repeat or exit the program
+# 2. Set up global scope variables and functions
+# 3. Greet user with init message
+# 4. Prompt user to select type of measurement
+# 5. Prompt user to select unit of measurement
+# 6. Prompt user to specify quantity amount
+# 7. Calculate & display converted value
+# 8. Prompt user to repeat, switch or exit the program
 
 # IF-THEN-ELSE:
-# - Conditionally check user input to carry out unit conversion
-# - Conditionally check user input to determine whether app should repeat or exit
+# - Conditionally check user input to carry out application options.
 
 import datetime
 
-# global scope variables
+# Global scope variables
 app = "unit-converter"
 calculate = {
     "measurement": ("(l)ength", "(m)ass", "(v)olume"),
@@ -38,7 +39,7 @@ def init():
     print(f"""
     {app} 0.0.2
     \u00A9 {date.year} Edwin M. Escobar
-    http: //github.com/escowin/{app}""")
+    https://github.com/escowin/{app}""")
     select_measurement()
 
 
@@ -89,7 +90,7 @@ def display_menu(unit, type):
     # Conditionally handles user selection
     if selected_option == "1":
         convert_unit(unit, type)
-    if selected_option == "2":
+    elif selected_option == "2":
         select_unit(type)
     elif selected_option == "3":
         select_measurement()
