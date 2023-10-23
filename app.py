@@ -34,36 +34,53 @@ def generate_prompt(option):
 
 
 def init():
-    # initial greeting
+    # Initial start up message
     date = datetime.date.today()
     print(f"""
     {app} 0.0.2
     \u00A9 {date.year} Edwin M. Escobar
     https://github.com/escowin/{app}""")
-    select_measurement()
+    # Prompts user to select a unit of measurement
+    select_measurement("measurement")
 
 
-def select_measurement():
-    # Displays a prompt containing measurement options
-    prompt = generate_prompt("measurement")
+def select_measurement(param):
+    # To-do:
+    # - Iterate through each prompt level (measurement > unit > amount > menu options) to coalesce functions
+    # - Increment 'calculate' to dynamically determine conditional statement
+
+    # Displays a prompt to capture user input
+    prompt = generate_prompt(param)
     selected_measurement = input(prompt)
+
+    # Invalid user input reprompts the user
+    if selected_measurement != "l" and selected_measurement != "m" and selected_measurement != "v":
+        print(f"invalid measurement: {selected_measurement}")
+        select_measurement(param)
+
+    # Valid user input progresses user to the next prompt
     select_unit(selected_measurement.lower())
 
 
 def select_unit(measurement):
-    # Conditionally handles prompt to correctly notate into 'calculate'
-    if measurement == "l":
-        prompt = generate_prompt("length")
-    elif measurement == "m":
-        prompt = generate_prompt("mass")
-    elif measurement == "v":
-        prompt = generate_prompt("volume")
-    else:
-        # error handling
-        print(f"\ninvalid measurement: {measurement}")
+    # Displays corresponding prompt
 
-    selected_unit = input(prompt)
-    convert_unit(selected_unit.lower(), measurement)
+    print(measurement)
+    measurement = measurement + "string"
+    print(measurement)
+    # if measurement == "l":
+    #     prompt = generate_prompt("length")
+    # elif measurement == "m":
+    #     prompt = generate_prompt("mass")
+    # elif measurement == "v":
+    #     prompt = generate_prompt("volume")
+    # else:
+    #     # invalid input sends user to previous prompt
+    #     print(f"\ninvalid measurement: {measurement}")
+    #     select_measurement()
+
+    # selected_unit = input(prompt)
+    # convert_unit(selected_unit.lower(), measurement)
 
 
 def convert_unit(unit, type):
