@@ -26,7 +26,7 @@ calculate = {
 
 def generate_prompt(option):
     # Dynamically generates user prompt
-    prompt = f"\n: : {option.upper()} SELECTION : : \n"
+    prompt = f"\n: : : {option.upper()} SELECTION : : : \n"
     for choice in calculate[option]:
         prompt += f"\n{choice}"
     prompt += "\n\nenter selection: "
@@ -39,14 +39,14 @@ def init():
     print(f"""
     {app} 0.0.2
     \u00A9 {date.year} Edwin M. Escobar
-    https://github.com/escowin/{app}""")
+    https: //github.com/escowin/{app}""")
     # Prompts user to select a unit of measurement
     select_measurement("measurement")
 
 
 def select_measurement(param):
     # To-do:
-    # - Iterate through each prompt level (measurement > unit > amount > menu options) to coalesce functions
+    # - Iterate through each prompt level (measurement > unit > amount > menu options)
     # - Increment 'calculate' to dynamically determine conditional statement
 
     # Displays a prompt to capture user input
@@ -63,28 +63,28 @@ def select_measurement(param):
 
 
 def select_unit(measurement):
-    # Displays corresponding prompt
+    measurements = {"l": "length", "m": "mass", "v": "volume"}
 
-    print(measurement)
-    measurement = measurement + "string"
-    print(measurement)
-    # if measurement == "l":
-    #     prompt = generate_prompt("length")
-    # elif measurement == "m":
-    #     prompt = generate_prompt("mass")
-    # elif measurement == "v":
-    #     prompt = generate_prompt("volume")
-    # else:
-    #     # invalid input sends user to previous prompt
-    #     print(f"\ninvalid measurement: {measurement}")
-    #     select_measurement()
+    # Reprompts user to select a valid type of measurement
+    if measurement not in measurements:
+        print(f"\ninvalid measurement: {measurement}")
+        select_measurement("measurement")
 
-    # selected_unit = input(prompt)
-    # convert_unit(selected_unit.lower(), measurement)
+    # Displays dynamically composed prompt to capture user input
+    measurement_name = measurements[measurement]
+    prompt = generate_prompt(measurement_name)
+    selected_unit = input(prompt)
+
+    # *to-do: implement length & volume formulas to remove conditonal
+    if measurement_name != "mass":
+        print(f"\nformulas not yet implemented for: {measurement_name}")
+        select_measurement('measurement')
+
+    convert_unit(selected_unit.lower(), measurement)
 
 
 def convert_unit(unit, type):
-    # Captures & type converts user data
+    # Captures & type converts user input
     num = float(input("enter amount: "))
 
     # Conditionally calculates & displays data
@@ -95,7 +95,7 @@ def convert_unit(unit, type):
         converted = num * 28.35
         print(f"\n{num} {unit} = {converted} g")
     else:
-        print(f"\nformula not yet implemented for unit: {unit}")
+        print(f"\ninvalid unit: {unit}")
     display_menu(unit, type)
 
 
@@ -112,7 +112,7 @@ def display_menu(unit, type):
     elif selected_option == "3":
         select_measurement()
     else:
-        print(f"\n: : exiting {app} : : ")
+        print(f"\n: : : exiting {app} : : : ")
         return
 
 
